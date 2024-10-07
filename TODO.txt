@@ -1,0 +1,5 @@
+config file configuration
+studentController file configuration
+routes api file set up
+app.js file set up
+models files setup and made schema 
