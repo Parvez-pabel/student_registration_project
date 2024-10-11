@@ -28,30 +28,26 @@ export const login = async(req, res)=>{
       return res.status(201).json({status:"success", message:"Log in successful.", data:{token:token}});
 
       
-    }
-
-
-
-
-
-    
-    
+    } 
   } catch (error) {
     return res.json({status:"not success", "message":error.toString()});
   }
-
-
-
-
-  return res.json({status:"success"});
-
 }
 
 //Profile read
 
 export const profileRead = async(req, res)=>{
-  return res.json({status:"success"});
+  try {
+    let student_id=req.headers['student_id'];
+    let data=await students.findOne({"_id":student_id});
+    return res.status(201).json({status:"success", message:"User profile fetched successfully.", data:data});
+    
+  } catch (error) {
+    return res.json({status:"fail", "message":"User not found"})
+    
+  }
 
+ 
 }
 
 //Profile delete
