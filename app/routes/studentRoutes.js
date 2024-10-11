@@ -4,6 +4,7 @@ const router = express.Router();
 
 //import controllers
 import * as studentController from "../controllers/studentController.js";
+import authMiddleware from '../middlewares/authMiddleware.js';
 
 
 
@@ -16,7 +17,7 @@ router.post("/Registration",studentController.Registration);
 
 router.post("/login", studentController.login);
 
-router.get("/profileRead", studentController.profileRead);
+router.get("/profileRead",authMiddleware, studentController.profileRead);
 
 router.post("/profileUpdate", studentController.profileUpdate);
 

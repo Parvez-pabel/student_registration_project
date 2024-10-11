@@ -1,4 +1,5 @@
 import students from "../models/studentModel.js";
+import { TokenEncode } from "../utils/generateToken.js";
 
 //Registration
 export const Registration = async(req, res)=>{
@@ -19,7 +20,21 @@ export const login = async(req, res)=>{
   try {
     let reqBody = req.body;
     let data=await students.findOne(reqBody)
-    return res.status(201).json({status:"success", message:"Registration successful.", data});
+    if (data==null) {
+      return res.json({status:"fail", "message":"User not found"})
+      
+    } else {
+      const token = TokenEncode(data.email, data._id);
+      return res.status(201).json({status:"success", message:"Log in successful.", data:{token:token}});
+
+      
+    }
+
+
+
+
+
+    
     
   } catch (error) {
     return res.json({status:"not success", "message":error.toString()});
