@@ -19,7 +19,7 @@ router.post("/login", studentController.login);
 
 router.get("/profileRead",authMiddleware, studentController.profileRead);
 
-router.post("/profileUpdate", studentController.profileUpdate);
+router.post("/profileUpdate",authMiddleware, studentController.profileUpdate);
 
 router.delete("/deleteStudent", studentController.deleteStudent);
 

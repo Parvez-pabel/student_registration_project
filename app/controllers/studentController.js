@@ -60,7 +60,15 @@ export const deleteStudent = async(req, res)=>{
 //Profile update
 
 export const profileUpdate = async(req, res)=>{
-  return res.json({status:"success"});
+  try {
+    let reqBody = req.body;
+    let student_id=req.headers['student_id'];
+    await students.updateOne( {"_id":student_id }, reqBody)
+    res.status(201).json({status:"success", message:"update successful."});
+    
+  } catch (error) {
+    return res.json({status:"not success", "message":error.toString()});
+  }
 
 }
 
