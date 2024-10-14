@@ -72,12 +72,12 @@ export const profileUpdate = async(req, res)=>{
 
 }
 
-//log out
+/*log out
 
 export const logout = async(req, res)=>{
   return res.json({status:"success"});
 
-}
+}*/
 
 
 

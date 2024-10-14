@@ -21,7 +21,6 @@ router.get("/profileRead",authMiddleware, studentController.profileRead);
 
 router.post("/profileUpdate",authMiddleware, studentController.profileUpdate);
 
-router.delete("/deleteStudent", studentController.deleteStudent);
 
 
 

@@ -4,7 +4,10 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import { DATABASE, PORT } from './app/config/config.js';
-import router from './app/routes/studentRoutes.js';
+import fileRoutes from './app/routes/fileRoutes.js';
+import studentRoutes from './app/routes/studentRoutes.js';
+
+
 
 
 
@@ -17,6 +20,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+
+
 
 // rate limiter
 const limiter = rateLimit({
@@ -33,7 +38,8 @@ mongoose.connect(DATABASE, {autoIndex:true}).then(()=>{
   console.log("database connection failed");
   
  });
-app.use("/api",router)
+app.use("/student",studentRoutes);
+app.use("/file",fileRoutes);
 
 app.listen(PORT, ()=>{
   console.log(`Server running on port ${PORT}`);
