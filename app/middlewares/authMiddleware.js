@@ -1,4 +1,5 @@
-import { TokenDecode } from "../utils/generateToken.js"
+import { TokenDecode } from "../utils/generateToken.js";
+
 
 export default(req,res, next)=>{
 
@@ -19,4 +20,6 @@ export default(req,res, next)=>{
 
     
   }
-}
+};
+
+

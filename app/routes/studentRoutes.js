@@ -13,7 +13,9 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 
 //import routes
-router.post("/Registration",studentController.Registration);
+router.post("/Registration",(req,res)=>{
+  res.json({status:"success"});
+});
 
 router.post("/login", studentController.login);
 

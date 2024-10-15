@@ -3,13 +3,16 @@ import { TokenEncode } from "../utils/generateToken.js";
 
 //Registration
 export const Registration = async(req, res)=>{
+  console.log(req.body);
   try {
     let reqBody = req.body;
+  
+    
     await students.create(reqBody)
-    res.status(201).json({status:"success", message:"Registration successful."});
+   return res.status(201).json({status:"success", message:"Registration successful."});
     
   } catch (error) {
-    return res.json({status:"not success", "message":error.toString()});
+    return res.status(500).json({status:"not success", "message":error.toString()});
   }
 }
 
@@ -25,7 +28,9 @@ export const login = async(req, res)=>{
       
     } else {
       const token = TokenEncode(data.email, data._id);
+      
       return res.status(201).json({status:"success", message:"Log in successful.", data:{token:token}});
+      //res.cookie('token',token,{httpOnly:true});
 
       
     } 
