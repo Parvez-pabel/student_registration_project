@@ -13,13 +13,11 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 
 //import routes
-router.post("/Registration",(req,res)=>{
-  res.json({status:"success"});
-});
+router.post("/Registration",studentController.Registration);
 
 router.post("/login", studentController.login);
 
-router.get("/profileRead",authMiddleware, studentController.profileRead);
+router.get("/profileRead/:id",authMiddleware, studentController.profileRead);
 
 router.post("/profileUpdate",authMiddleware, studentController.profileUpdate);
 

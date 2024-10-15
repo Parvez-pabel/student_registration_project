@@ -3,7 +3,7 @@ import { TokenEncode } from "../utils/generateToken.js";
 
 //Registration
 export const Registration = async(req, res)=>{
-  console.log(req.body);
+  
   try {
     let reqBody = req.body;
   
@@ -30,9 +30,7 @@ export const login = async(req, res)=>{
       const token = TokenEncode(data.email, data._id);
       
       return res.status(201).json({status:"success", message:"Log in successful.", data:{token:token}});
-      //res.cookie('token',token,{httpOnly:true});
-
-      
+ 
     } 
   } catch (error) {
     return res.json({status:"not success", "message":error.toString()});

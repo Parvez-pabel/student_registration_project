@@ -5,7 +5,7 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import { DATABASE, PORT } from './app/config/config.js';
-
+import fileRouter from './app/routes/fileRoutes.js';
 import router from './app/routes/studentRoutes.js';
 
 
@@ -18,10 +18,13 @@ import router from './app/routes/studentRoutes.js';
 
 const app = express();
 //app use default mid
-app.use(express.json());
+app.use(express.json({limit:'10MB'}));
 app.use(cors());
 app.use(helmet());
-app.use(cookieParser)
+app.use(cookieParser())
+app.use(express.urlencoded({extended: true}))
+
+
 
 
 
@@ -41,10 +44,8 @@ mongoose.connect(DATABASE, {autoIndex:true}).then(()=>{
   
  });
 app.use("/student",router);
-// app.use("/file",fileRoutes);
-app.get("/",(req, res)=>{
-  res.send("Hello from server")
-})
+app.use("/file",fileRouter);
+
 app.listen(PORT, ()=>{
   console.log(`Server running on port ${PORT}`);
  });

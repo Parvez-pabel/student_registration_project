@@ -9,7 +9,6 @@ const __dirname = path.dirname(__filename);
 
 export const uploadFile = (req, res) => {
   try {
-    console.log(req.file);
     // File is available at req.file thanks to Multer
     if (!req.file) {
       return res.status(400).json({ status: "fail", message: "No file uploaded." });
